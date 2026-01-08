@@ -1,69 +1,55 @@
-import React from "react";
-import Header from "@/components/Header";
-import {
-  Heart,
-  Target,
-  Shield,
-  Users,
-  Clock,
+import React from 'react';
+import Header from '@/components/Header';
+import soumyaImg from '../../assets/team/soumya.jpeg';
+import sukshmiImg from '../../assets/team/sukshmi.jpeg';
+import srashtiImg from '../../assets/team/srashti.jpeg';
+import { 
+  Heart, 
+  Target, 
+  Shield, 
+  Users, 
+  Clock, 
   Award,
   CheckCircle,
   Globe,
-} from "lucide-react";
+  Zap,
+  Flag,
+} from 'lucide-react';
 
-function About() {
+const About = () => {
   const values = [
     {
       icon: Heart,
-      title: "Compassion",
-      description: "Every life matters. We approach every case with empathy and urgency.",
+      title: 'Human-Centric',
+      description: 'Beyond data and matching, we remember that every request is a family hoping for a miracle.',
     },
     {
       icon: Shield,
-      title: "Trust & Safety",
-      description: "Verified donors, secure data, and transparent processes at every step.",
+      title: 'Radical Transparency',
+      description: 'We maintain a verifiable audit trail for every organ and blood unit to ensure ethical compliance.',
     },
     {
-      icon: Clock,
-      title: "Speed",
-      description: "In medical emergencies, every second counts. Our systems are built for rapid response.",
+      icon: Zap,
+      title: 'Ultra-Response',
+      description: 'Our proprietary matching algorithm reduces the "time-to-donor" from days to mere minutes.',
     },
     {
-      icon: Globe,
-      title: "Accessibility",
-      description: "Healthcare support should be available to everyone, regardless of location or status.",
+      icon: Flag,
+      title: 'Building New India',
+      description: 'Empowering our nation with indigenous technology to solve global healthcare challenges.',
     },
   ];
 
   const milestones = [
-    { year: "2020", title: "Platform Launch", description: "LifeLink was founded with a mission to save lives" },
-    { year: "2021", title: "1,000 Lives Saved", description: "Reached our first major milestone" },
-    { year: "2022", title: "Hospital Network", description: "Partnered with 100+ hospitals nationwide" },
-    { year: "2023", title: "NGO Integration", description: "Launched financial support through NGO partners" },
-    { year: "2024", title: "Red Alert System", description: "Introduced 24/7 emergency response capability" },
+    { year: '2024', title: 'The Concept', description: 'Born from a classroom discussion to solve the critical gap in Indian emergency medical logistics.' },
+    { year: '2025', title: 'Development Phase', description: 'Designing the architecture to handle nationwide connectivity across hospitals and NGOs.' },
+    { year: '2026', title: 'Under Development', description: 'Soumya, Sukshmi, and Srashti are currently building the core engine for a safer tomorrow.' },
   ];
 
   const team = [
-    {
-      name: "Dr. Sarah Mitchell",
-      role: "Medical Director",
-      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=200&h=200&fit=crop",
-    },
-    {
-      name: "James Anderson",
-      role: "CEO & Founder",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop",
-    },
-    {
-      name: "Emily Chen",
-      role: "Operations Lead",
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop",
-    },
-    {
-      name: "Michael Roberts",
-      role: "Tech Director",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
-    },
+    { name: 'Soumya Goel', role: 'Developer | B.Tech 3rd Year', image: soumyaImg },
+    { name: 'Sukshmi Pandey', role: 'Developer | B.Tech 3rd Year', image: sukshmiImg },
+    { name: 'Srashti Katiyar', role: 'Developer | B.Tech 3rd Year', image: srashtiImg },
   ];
 
   return (
@@ -71,15 +57,16 @@ function About() {
       <Header />
 
       {/* Hero */}
-      <section className="relative py-20 gradient-hero">
+      <section className="relative py-20 gradient-hero overflow-hidden">
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-              About <span className="text-primary">LifeLink</span>
+              Innovating for a <span className="text-primary">New India</span>
             </h1>
             <p className="mt-6 text-lg text-muted-foreground">
-              We are a social impact healthcare platform dedicated to connecting those in need
-              with life-saving resources. Our mission is simple: every second counts.
+              LifeLink is a digital initiative developed by engineering students 
+              committed to transforming India's healthcare landscape. We are building 
+              a future where no life is lost due to a lack of connection.
             </p>
           </div>
         </div>
@@ -92,31 +79,27 @@ function About() {
             <div>
               <div className="flex items-center gap-2 text-primary mb-4">
                 <Target className="h-5 w-5" />
-                <span className="text-sm font-semibold uppercase tracking-wider">
-                  Our Mission
-                </span>
+                <span className="text-sm font-semibold uppercase tracking-wider">Our Vision</span>
               </div>
-
               <h2 className="text-3xl font-bold text-foreground">
-                Bridging the Gap Between Need and Help
+                Student-Led Innovation for Social Impact
               </h2>
-
               <p className="mt-4 text-muted-foreground">
-                LifeLink was created to solve a critical problem in healthcare: the disconnect between
-                patients who urgently need blood, organs, or medical support, and those who can provide it.
+                As 3rd-year B.Tech students, we recognize that technology is the most 
+                powerful tool to achieve the dream of a "New India." LifeLink bridges 
+                the gap between donors, patients, and hospitals through a unified 
+                emergency ecosystem.
               </p>
-
               <p className="mt-4 text-muted-foreground">
-                Through technology and human compassion, we've built a platform that enables rapid matching,
-                real-time coordination, and seamless communication.
+                Our platform is designed to optimize the "Golden Hour," ensuring that 
+                logistics never stand in the way of a saved life.
               </p>
-
               <div className="mt-8 flex flex-col gap-3">
                 {[
-                  "Real-time donor matching",
-                  "Hospital network coordination",
-                  "Financial assistance programs",
-                  "Emergency red alert system",
+                  'Indigenous smart matching algorithms', 
+                  'Bridging Rural-Urban healthcare gaps', 
+                  'Transparent NGO financial assistance', 
+                  'National network for blood and organ matching'
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
                     <CheckCircle className="h-5 w-5 text-success" />
@@ -125,14 +108,13 @@ function About() {
                 ))}
               </div>
             </div>
-
             <div className="relative">
               <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
                 <Heart className="h-32 w-32 text-primary/30" />
               </div>
-              <div className="absolute -bottom-6 -right-6 rounded-xl bg-card border border-border p-4 shadow-lg">
-                <p className="text-3xl font-bold text-primary">12,450+</p>
-                <p className="text-sm text-muted-foreground">Lives Saved</p>
+              <div className="absolute -bottom-6 -right-6 rounded-xl bg-card border border-border p-6 shadow-xl">
+                <p className="text-xl font-bold text-primary">Mission</p>
+                <p className="text-sm text-muted-foreground">Saving India, One Match at a Time</p>
               </div>
             </div>
           </div>
@@ -143,27 +125,59 @@ function About() {
       <section className="py-16">
         <div className="container">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground">Our Core Values</h2>
-            <p className="mt-2 text-muted-foreground">
-              The principles that guide everything we do
-            </p>
+            <h2 className="text-3xl font-bold text-foreground">Our Core Philosophy</h2>
+            <p className="mt-2 text-muted-foreground">Values driving our B.Tech project toward a national solution</p>
           </div>
-
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((value, index) => (
-              <div
-                key={index}
-                className="rounded-xl border border-border bg-card p-6 text-center hover:shadow-md transition-shadow"
-              >
+              <div key={index} className="rounded-xl border border-border bg-card p-6 text-center hover:shadow-md transition-shadow">
                 <div className="mx-auto w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                   <value.icon className="h-6 w-6 text-primary" />
                 </div>
                 <h3 className="font-semibold text-foreground">{value.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  {value.description}
-                </p>
+                <p className="mt-2 text-sm text-muted-foreground">{value.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Timeline */}
+      <section className="py-16 bg-muted/30">
+        <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground">Our Development Roadmap</h2>
+            <p className="mt-2 text-muted-foreground">The journey of three developers with a single mission</p>
+          </div>
+          <div className="relative">
+            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border hidden md:block" />
+            <div className="space-y-8">
+              {milestones.map((milestone, index) => (
+                <div key={index} className={`flex flex-col md:flex-row gap-4 md:gap-8 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+                  <div className="flex-1 md:text-right">
+                    {index % 2 === 0 && (
+                      <div className="rounded-xl border border-border bg-card p-6">
+                        <span className="text-sm font-medium text-primary">{milestone.year}</span>
+                        <h3 className="mt-1 font-semibold text-foreground">{milestone.title}</h3>
+                        <p className="mt-1 text-sm text-muted-foreground">{milestone.description}</p>
+                      </div>
+                    )}
+                  </div>
+                  <div className="hidden md:flex items-center justify-center">
+                    <div className="w-4 h-4 rounded-full bg-primary border-4 border-background" />
+                  </div>
+                  <div className="flex-1">
+                    {index % 2 !== 0 && (
+                      <div className="rounded-xl border border-border bg-card p-6">
+                        <span className="text-sm font-medium text-primary">{milestone.year}</span>
+                        <h3 className="mt-1 font-semibold text-foreground">{milestone.title}</h3>
+                        <p className="mt-1 text-sm text-muted-foreground">{milestone.description}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -174,23 +188,18 @@ function About() {
           <div className="text-center mb-12">
             <div className="flex items-center justify-center gap-2 text-primary mb-4">
               <Users className="h-5 w-5" />
-              <span className="text-sm font-semibold uppercase tracking-wider">
-                Our Team
-              </span>
+              <span className="text-sm font-semibold uppercase tracking-wider">The Developers</span>
             </div>
-            <h2 className="text-3xl font-bold text-foreground">
-              Meet the People Behind LifeLink
-            </h2>
+            <h2 className="text-3xl font-bold text-foreground">Meet the Minds Behind LifeLink</h2>
           </div>
-
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-3">
             {team.map((member, index) => (
               <div key={index} className="text-center group">
                 <div className="relative inline-block mb-4">
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-32 h-32 rounded-2xl object-cover mx-auto border-2 border-border group-hover:border-primary transition-colors"
+                    className="w-32 h-32 rounded-2xl object-cover mx-auto border-2 border-border group-hover:border-primary transition-all"
                   />
                   <div className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-primary flex items-center justify-center">
                     <Award className="h-4 w-4 text-primary-foreground" />
@@ -204,15 +213,16 @@ function About() {
         </div>
       </section>
 
+      {/* Footer */}
       <footer className="border-t border-border bg-muted/30 py-8">
         <div className="container text-center">
           <p className="text-sm text-muted-foreground">
-            © 2024 LifeLink. Every Second Counts.
+            © 2026 LifeLink Project. Currently under development for a better India.
           </p>
         </div>
       </footer>
     </div>
   );
-}
+};
 
 export default About;
