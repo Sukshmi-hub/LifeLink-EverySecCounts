@@ -12,7 +12,6 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Switch } from '@/components/ui/switch';
 import {
-  Heart,
   Menu,
   X,
   User,
@@ -28,6 +27,7 @@ import {
   BellRing,
 } from 'lucide-react';
 import { useChat } from '@/context/ChatContext';
+import LifeLinkLogo from '@/components/LifeLinkLogo';
 
 const Header = () => {
   const { user, isAuthenticated, logout } = useAuth();
@@ -80,16 +80,8 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary shadow-sm">
-            <Heart className="h-5 w-5 text-primary-foreground" />
-          </div>
-          <div className="flex flex-col">
-            <span className="text-xl font-bold text-foreground">LifeLink</span>
-            <span className="text-[10px] font-medium tracking-wider text-muted-foreground">
-              EVERY SECOND COUNTS
-            </span>
-          </div>
+        <Link to="/" className="transition-opacity hover:opacity-80">
+          <LifeLinkLogo size="sm" showSubtext={true} />
         </Link>
 
         {/* Desktop Navigation */}
@@ -117,10 +109,9 @@ const Header = () => {
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="icon" className="relative">
                     <Bell className="h-5 w-5" />
-                    {/* FIXED: Removed unreadCount so badge hides when notifications are read */}
-                    {unreadNotifications > 0 && (
+                    {(unreadCount + unreadNotifications) > 0 && (
                       <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
-                        {unreadNotifications > 9 ? '9+' : unreadNotifications}
+                        {(unreadCount + unreadNotifications) > 9 ? '9+' : (unreadCount + unreadNotifications)}
                       </span>
                     )}
                   </Button>

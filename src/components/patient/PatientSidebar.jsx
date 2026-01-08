@@ -8,16 +8,18 @@ import {
   HandHeart, 
   User, 
   LogOut,
-  Heart,
+  MessageCircle,
   Menu,
   X
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import LifeLinkLogo from '@/components/LifeLinkLogo';
 
 const menuItems = [
   { icon: FileText, label: 'Request', path: '/patient/request' },
   { icon: Search, label: 'Find Hospital', path: '/patient/find-hospital' },
+  { icon: MessageCircle, label: 'Messages', path: '/patient/messages' },
   { icon: CreditCard, label: 'Payments', path: '/patient/payment' },
   { icon: HandHeart, label: 'Request Funds', path: '/patient/request-funds' },
   { icon: User, label: 'Profile', path: '/patient/profile' },
@@ -47,11 +49,8 @@ const PatientSidebar = ({ isOpen, onToggle }) => {
       >
         {/* Logo */}
         <div className="flex items-center justify-between p-4 border-b border-border">
-          <Link to="/patient/dashboard" className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-              <Heart className="w-5 h-5 text-primary-foreground" />
-            </div>
-            <span className="font-bold text-lg text-foreground">LifeLink</span>
+          <Link to="/patient/dashboard">
+            <LifeLinkLogo size="sm" showSubtext={true} />
           </Link>
           <Button variant="ghost" size="icon" onClick={onToggle} className="lg:hidden">
             <X className="w-5 h-5" />
@@ -62,7 +61,6 @@ const PatientSidebar = ({ isOpen, onToggle }) => {
         <nav className="p-4 space-y-2">
           {menuItems.map((item) => {
             const isActive = location.pathname === item.path;
-            const Icon = item.icon; // Assigned to a capitalized variable for JSX rendering
             return (
               <Link
                 key={item.path}
@@ -75,7 +73,7 @@ const PatientSidebar = ({ isOpen, onToggle }) => {
                 )}
                 onClick={() => onToggle()}
               >
-                <Icon className="w-5 h-5" />
+                <item.icon className="w-5 h-5" />
                 <span className="font-medium">{item.label}</span>
               </Link>
             );
