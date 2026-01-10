@@ -14,55 +14,53 @@ import { useAuth } from '@/context/AuthContext';
 import { CheckCircle, Heart, AlertTriangle, ArrowRight, ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
+// ✅ SAFE Medical Icons (all verified existing)
+import { GiKidneys, GiLiver, GiLungs, GiMedicalDrip, GiSkeleton } from "react-icons/gi";
+import { FaEye, FaHeart } from "react-icons/fa";
+import { MdBiotech } from "react-icons/md";
+
 const organOptions = [
   {
     id: 'kidney',
     name: 'Kidney',
     description: 'Most commonly transplanted organ',
-    icon: '🫁',
-    medicalImage: '🩺',
+    icon: GiKidneys,
   },
   {
     id: 'liver',
     name: 'Liver',
     description: 'Can regenerate after partial donation',
-    icon: '🫀',
-    medicalImage: '🩺',
+    icon: GiLiver,
   },
   {
     id: 'heart',
     name: 'Heart',
     description: 'Critical for cardiac patients',
-    icon: '❤️',
-    medicalImage: '🩺',
+    icon: FaHeart, // ✅ SAFE replacement
   },
   {
     id: 'lung',
     name: 'Lung',
     description: 'For respiratory failure patients',
-    icon: '🫁',
-    medicalImage: '🩺',
+    icon: GiLungs,
   },
   {
     id: 'pancreas',
     name: 'Pancreas',
     description: 'For diabetes treatment',
-    icon: '🔬',
-    medicalImage: '🩺',
+    icon: MdBiotech,
   },
   {
     id: 'cornea',
     name: 'Cornea',
     description: 'Restore vision to the blind',
-    icon: '👁️',
-    medicalImage: '🩺',
+    icon: FaEye,
   },
   {
     id: 'bone_marrow',
     name: 'Bone Marrow',
     description: 'For blood cancer patients',
-    icon: '🦴',
-    medicalImage: '🩺',
+    icon: GiSkeleton, // ✅ SAFE replacement
   },
 ];
 
@@ -142,6 +140,8 @@ const DonateModal = ({ isOpen, onClose }) => {
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto">
+
+        {/* ================= SELECT ORGAN STEP ================= */}
         {step === 'select' && (
           <>
             <DialogHeader>
@@ -155,26 +155,31 @@ const DonateModal = ({ isOpen, onClose }) => {
             </DialogHeader>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-4">
-              {organOptions.map((organ) => (
-                <button
-                  key={organ.id}
-                  type="button"
-                  onClick={() => handleOrganSelect(organ.id)}
-                  className={cn(
-                    "flex flex-col items-center p-4 rounded-xl border-2 transition-all text-center",
-                    selectedOrgan === organ.id
-                      ? "border-primary bg-primary/10"
-                      : "border-border hover:border-primary/50 hover:bg-muted/50"
-                  )}
-                >
-                  <div className="text-4xl mb-2">{organ.icon}</div>
-                  <h3 className="font-semibold text-foreground text-sm">{organ.name}</h3>
-                  <p className="text-xs text-muted-foreground mt-1">{organ.description}</p>
-                  {selectedOrgan === organ.id && (
-                    <CheckCircle className="h-5 w-5 text-primary mt-2" />
-                  )}
-                </button>
-              ))}
+              {organOptions.map((organ) => {
+                const Icon = organ.icon;
+                return (
+                  <button
+                    key={organ.id}
+                    type="button"
+                    onClick={() => handleOrganSelect(organ.id)}
+                    className={cn(
+                      "flex flex-col items-center p-4 rounded-xl border-2 transition-all text-center",
+                      selectedOrgan === organ.id
+                        ? "border-primary bg-primary/10"
+                        : "border-border hover:border-primary/50 hover:bg-muted/50"
+                    )}
+                  >
+                    <div className="mb-2 text-primary">
+                      {Icon && <Icon size={42} />}
+                    </div>
+                    <h3 className="font-semibold text-foreground text-sm">{organ.name}</h3>
+                    <p className="text-xs text-muted-foreground mt-1">{organ.description}</p>
+                    {selectedOrgan === organ.id && (
+                      <CheckCircle className="h-5 w-5 text-primary mt-2" />
+                    )}
+                  </button>
+                );
+              })}
             </div>
 
             <div className="flex justify-end gap-3 mt-6">
@@ -189,6 +194,7 @@ const DonateModal = ({ isOpen, onClose }) => {
           </>
         )}
 
+        {/* ================= CONSENT STEP ================= */}
         {step === 'consent' && (
           <>
             <DialogHeader>
@@ -209,64 +215,32 @@ const DonateModal = ({ isOpen, onClose }) => {
             </div>
 
             <div className="mt-6 space-y-4">
-              <div className="flex items-start gap-3">
-                <Checkbox
-                  id="voluntary"
-                  checked={consentChecks.voluntary}
-                  onCheckedChange={(checked) => 
-                    setConsentChecks(prev => ({ ...prev, voluntary: checked === true }))
-                  }
-                />
-                <label htmlFor="voluntary" className="text-sm leading-relaxed cursor-pointer">
-                  I confirm that I am donating <strong>voluntarily</strong> and out of my own free will.
-                </label>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <Checkbox
-                  id="risks"
-                  checked={consentChecks.risks}
-                  onCheckedChange={(checked) => 
-                    setConsentChecks(prev => ({ ...prev, risks: checked === true }))
-                  }
-                />
-                <label htmlFor="risks" className="text-sm leading-relaxed cursor-pointer">
-                  I <strong>understand the medical risks</strong> and the donation process involved.
-                </label>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <Checkbox
-                  id="pressure"
-                  checked={consentChecks.pressure}
-                  onCheckedChange={(checked) => 
-                    setConsentChecks(prev => ({ ...prev, pressure: checked === true }))
-                  }
-                />
-                <label htmlFor="pressure" className="text-sm leading-relaxed cursor-pointer">
-                  I am <strong>not under pressure</strong> or coercion from anyone.
-                </label>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <Checkbox
-                  id="verification"
-                  checked={consentChecks.verification}
-                  onCheckedChange={(checked) => 
-                    setConsentChecks(prev => ({ ...prev, verification: checked === true }))
-                  }
-                />
-                <label htmlFor="verification" className="text-sm leading-relaxed cursor-pointer">
-                  I consent to <strong>LifeLink and hospital verification</strong> of my donation.
-                </label>
-              </div>
+              {[
+                { id: "voluntary", label: "I confirm that I am donating voluntarily and out of my own free will." },
+                { id: "risks", label: "I understand the medical risks and the donation process involved." },
+                { id: "pressure", label: "I am not under pressure or coercion from anyone." },
+                { id: "verification", label: "I consent to LifeLink and hospital verification of my donation." },
+              ].map((item) => (
+                <div key={item.id} className="flex items-start gap-3">
+                  <Checkbox
+                    id={item.id}
+                    checked={consentChecks[item.id]}
+                    onCheckedChange={(checked) =>
+                      setConsentChecks(prev => ({ ...prev, [item.id]: checked === true }))
+                    }
+                  />
+                  <label htmlFor={item.id} className="text-sm leading-relaxed cursor-pointer">
+                    {item.label}
+                  </label>
+                </div>
+              ))}
 
               <div className="border-t border-border pt-4">
                 <div className="flex items-start gap-3">
                   <Checkbox
                     id="terms"
                     checked={consentChecks.terms}
-                    onCheckedChange={(checked) => 
+                    onCheckedChange={(checked) =>
                       setConsentChecks(prev => ({ ...prev, terms: checked === true }))
                     }
                   />
@@ -289,6 +263,7 @@ const DonateModal = ({ isOpen, onClose }) => {
           </>
         )}
 
+        {/* ================= SUCCESS STEP ================= */}
         {step === 'success' && (
           <div className="flex flex-col items-center justify-center py-8 text-center">
             <div className="w-20 h-20 rounded-full bg-success/20 flex items-center justify-center mb-6">
@@ -318,6 +293,7 @@ const DonateModal = ({ isOpen, onClose }) => {
             </Button>
           </div>
         )}
+
       </DialogContent>
     </Dialog>
   );

@@ -41,7 +41,7 @@ const DonorSidebar = ({ isOpen, onToggle }) => {
       label: 'Dashboard',
       badge: null 
     },
-    // --- ADDED RED ALERT HERE ---
+    // RED ALERT
     { 
       path: '/red-alert', 
       icon: AlertTriangle, 
@@ -50,11 +50,12 @@ const DonorSidebar = ({ isOpen, onToggle }) => {
       isRedAlert: true 
     },
     { 
-      path: '/donor/alerts', 
-      icon: Bell, 
-      label: 'Alerts',
-      badge: unreadNotifications > 0 ? unreadNotifications : null 
-    },
+  path: '/donor/alerts', 
+  icon: Bell, 
+  label: 'Alerts',
+  // This uses the exact number from your Context without adding anything extra
+  badge: unreadNotifications && unreadNotifications > 0 ? unreadNotifications : null 
+},
     { 
       path: '/donor/messages', 
       icon: MessageCircle, 
